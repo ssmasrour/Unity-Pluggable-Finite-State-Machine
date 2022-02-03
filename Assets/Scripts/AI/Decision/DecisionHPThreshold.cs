@@ -10,6 +10,6 @@ public class DecisionHPThreshold : IDecision
 
     public override bool Check(StateController fsm)
     {
-        return fsm.HP.GetHP() <= Mathf.Abs(threshold);
+        return true/*fsm.HP.GetHP() <= Mathf.Abs(threshold)*/;
     }
 }

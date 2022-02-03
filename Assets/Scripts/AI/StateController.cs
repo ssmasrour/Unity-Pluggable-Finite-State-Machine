@@ -6,29 +6,23 @@ public class StateController : MonoBehaviour
 {
     #region Fields and Variable
     public State startState;
-    [HideInInspector] public State previousState;
-    [HideInInspector] public State currentState;
-
-    [Space, Tooltip("Decisions that are common to all states. Like checking health point, pause/play NPC and etc.")]
-    public Transition[] monitoringTransitions;
-
+    [Space]
+    public State previousState;
+    public State currentState;
 
     [Space]
     public NavMeshAgent agent;
     public Animator animator;
-    public SimpleHP HP;
 
     public List<Transform> wayPoints;
 
-
-    [Space, Header("Creature States")]
     float stateStartTime;
     #endregion
 
 
     void Start()
     {
-        currentState = startState;
+        ChangeState(startState);
     }
 
     void Update()
@@ -48,7 +42,7 @@ public class StateController : MonoBehaviour
     {
         if (currentState == newState) return;
 
-        currentState.Exit(this);
+        currentState?.Exit(this);
         previousState = currentState;
         currentState = newState;
         currentState.Entry(this);
