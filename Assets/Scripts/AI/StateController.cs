@@ -5,54 +5,65 @@ using UnityEngine.AI;
 public class StateController : MonoBehaviour
 {
     #region Fields and Variable
-    public State startState;
     [Space]
-    public State previousState;
-    public State currentState;
-
-    [Space]
-    public NavMeshAgent agent;
-    public Animator animator;
-
+    public NavMeshAgent NavAgent;
+    public Animator Animator;
+    // Optional
     public List<Transform> wayPoints;
 
-    float stateStartTime;
+    [Space]
+    [SerializeField]
+    private State _startState;
+
+    private State _previousState;
+    private State _currentState;
+    private float _stateStartTime;
     #endregion
 
 
     void Start()
     {
-        ChangeState(startState);
+        ChangeState(_startState);
+    }
+
+    private void LateUpdate()
+    {
+        _currentState.OnLateUpdate(this);
     }
 
     void Update()
     {
-        currentState.Execute(this);
+        _currentState.OnUpdate(this);
+    }
+
+    private void FixedUpdate()
+    {
+        _currentState.OnFixedUpdate(this);
     }
 
     public void AIActivator(bool isStopped)
     {
-        if (agent.isStopped != isStopped)
+        if (NavAgent.isStopped != isStopped)
         {
-            agent.isStopped = isStopped;
+            NavAgent.isStopped = isStopped;
         }
     }
 
     public void ChangeState(State newState)
     {
-        if (currentState == newState) return;
+        if (_currentState == newState) return;
 
-        currentState?.Exit(this);
-        previousState = currentState;
-        currentState = newState;
-        currentState.Entry(this);
+        _currentState?.Exit(this);
+        _previousState = _currentState;
+        _currentState = newState;
+        _currentState.Entry(this);
 
-        stateStartTime = Time.time;
+        _stateStartTime = Time.time;
     }
 
     public float StateTimer()
     {
-        return Time.time - stateStartTime;
+        return Time.time - _stateStartTime;
     }
 
     #region Optional Methods

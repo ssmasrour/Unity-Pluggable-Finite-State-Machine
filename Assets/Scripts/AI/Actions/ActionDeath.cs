@@ -7,11 +7,20 @@ public class ActionDeath : IAction {
         Destroy(fsm.gameObject);
     }
 
-    public override void Execute(StateController fsm)
+    public override void OnUpdate(StateController fsm)
     {
         
     }
 
+    public override void OnLateUpdate(StateController fsm)
+    {
+        // write your code here
+    }
+
+    public override void OnFixedUpdate(StateController fsm)
+    {
+        // write your code here
+    }
     public override void Exit(StateController fsm)
     {
         

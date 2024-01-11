@@ -8,27 +8,39 @@ public class ActionWandering : IAction
         fsm.AIActivator(true);
     }
 
-    public override void Execute(StateController fsm)
+    public override void OnUpdate(StateController fsm)
     {
-        if (fsm.wayPoints.Count < 1 || !fsm.agent)
+        if (fsm.wayPoints.Count < 1 || !fsm.NavAgent)
         {
             Debug.LogError("Action Wanderin: No way point found");
             return;
         }
 
-        if (fsm.agent.isStopped)
+        if (fsm.NavAgent.isStopped)
         {
-            fsm.agent.isStopped = false;
+            fsm.NavAgent.isStopped = false;
         }
 
-        if (fsm.agent.destination == null || fsm.agent.remainingDistance <= fsm.agent.stoppingDistance)
+        if (fsm.NavAgent.destination == null || fsm.NavAgent.remainingDistance <= fsm.NavAgent.stoppingDistance)
         {
-            fsm.agent.destination = fsm.GetRandomWayPoint().position;
+            fsm.NavAgent.destination = fsm.GetRandomWayPoint().position;
         }
+    }
+
+
+    public override void OnLateUpdate(StateController fsm)
+    {
+        // write your code here
+    }
+
+    public override void OnFixedUpdate(StateController fsm)
+    {
+        // write your code here
     }
 
     public override void Exit(StateController fsm)
     {
         
     }
+
 }

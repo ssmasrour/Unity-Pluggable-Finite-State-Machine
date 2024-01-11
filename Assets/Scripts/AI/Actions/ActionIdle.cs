@@ -8,11 +8,20 @@ public class ActionIdle : IAction
         fsm.AIActivator(false);
     }
 
-    public override void Execute(StateController fsm)
+    public override void OnUpdate(StateController fsm)
     {
         fsm.AIActivator(true);
     }
 
+    public override void OnLateUpdate(StateController fsm)
+    {
+        // write your code here
+    }
+
+    public override void OnFixedUpdate(StateController fsm)
+    {
+        // write your code here
+    }
     public override void Exit(StateController fsm)
     {
         

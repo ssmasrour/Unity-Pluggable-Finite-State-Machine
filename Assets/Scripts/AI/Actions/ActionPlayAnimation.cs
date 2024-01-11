@@ -15,11 +15,20 @@ public class ActionPlayAnimation : IAction {
         PlayAniamtion(fsm);
     }
 
-    public override void Execute(StateController fsm)
+    public override void OnUpdate(StateController fsm)
     {
         
     }
 
+    public override void OnLateUpdate(StateController fsm)
+    {
+        // write your code here
+    }
+
+    public override void OnFixedUpdate(StateController fsm)
+    {
+        // write your code here
+    }
     public override void Exit(StateController fsm)
     {
         
@@ -30,16 +39,16 @@ public class ActionPlayAnimation : IAction {
         switch (animationType)
         {
             case AnimationType.BoolType:
-                controller.animator.SetBool(parameterName, boolValue);
+                controller.Animator.SetBool(parameterName, boolValue);
                 break;
             case AnimationType.IntType:
-                controller.animator.SetInteger(parameterName, intValue);
+                controller.Animator.SetInteger(parameterName, intValue);
                 break;
             case AnimationType.FloatType:
-                controller.animator.SetFloat(parameterName, floatValue);
+                controller.Animator.SetFloat(parameterName, floatValue);
                 break;
             case AnimationType.TriggerType:
-                controller.animator.SetTrigger(parameterName);
+                controller.Animator.SetTrigger(parameterName);
                 break;
         }
     }
