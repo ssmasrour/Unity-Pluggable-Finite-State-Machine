@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 008f824ef9b17964d912e78e463517e6, type: 3}
+  m_Name: State - Wandering
+  m_EditorClassIdentifier: 
+  actions:
+  - {fileID: 11400000, guid: ec648c8b45d13594a8c637440e02050a, type: 2}
+  - {fileID: 11400000, guid: b6d6553e97642644f89344b3f8eeb529, type: 2}
+  transitions:
+  - decision: {fileID: 11400000, guid: 832bf16f85de9984ea689e36f94c345d, type: 2}
+    TrueState: {fileID: 11400000, guid: 690bde7c323d63540b8204223f75e655, type: 2}
+    FalseState: {fileID: 11400000}
+  - decision: {fileID: 11400000, guid: f913d1e0084307c4083b62ec90066b1a, type: 2}
+    TrueState: {fileID: 11400000, guid: 9185e1251c6c0be49b9d22e6c15a2c5c, type: 2}
+    FalseState: {fileID: 11400000}
