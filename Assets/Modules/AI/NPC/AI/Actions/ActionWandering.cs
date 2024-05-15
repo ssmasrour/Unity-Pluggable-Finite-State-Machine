@@ -1,46 +1,50 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "AI/Action/Wandering")]
-public class ActionWandering : IAction
+namespace Sahab.AI
 {
-    public override void Entry(StateController fsm)
+    [CreateAssetMenu(menuName = "AI/Action/Wandering")]
+    public class ActionWandering : IAction
     {
-        fsm.InactiveAgent(true);
-    }
-
-    public override void OnUpdate(StateController fsm)
-    {
-        if (fsm.wayPoints.Count < 1 || !fsm.NavAgent)
+        public override void Entry(StateController fsm)
         {
-            Debug.LogError("Action Wanderin: No way point found");
-            return;
+            fsm.InactiveAgent(true);
         }
 
-        if (fsm.NavAgent.isStopped)
+        public override void OnUpdate(StateController fsm)
         {
-            fsm.NavAgent.isStopped = false;
+            if (fsm.wayPoints.Count < 1 || !fsm.NavAgent)
+            {
+                Debug.LogError("Action Wanderin: No way point found");
+                return;
+            }
+
+            if (fsm.NavAgent.isStopped)
+            {
+                fsm.NavAgent.isStopped = false;
+            }
+
+            if (fsm.NavAgent.destination == null || fsm.NavAgent.remainingDistance <= fsm.NavAgent.stoppingDistance)
+            {
+                fsm.NavAgent.destination = fsm.GetRandomWayPoint().position;
+            }
         }
 
-        if (fsm.NavAgent.destination == null || fsm.NavAgent.remainingDistance <= fsm.NavAgent.stoppingDistance)
+
+        public override void OnLateUpdate(StateController fsm)
         {
-            fsm.NavAgent.destination = fsm.GetRandomWayPoint().position;
+            // write your code here
         }
+
+        public override void OnFixedUpdate(StateController fsm)
+        {
+            // write your code here
+        }
+
+        public override void Exit(StateController fsm)
+        {
+
+        }
+
+
     }
-
-
-    public override void OnLateUpdate(StateController fsm)
-    {
-        // write your code here
-    }
-
-    public override void OnFixedUpdate(StateController fsm)
-    {
-        // write your code here
-    }
-
-    public override void Exit(StateController fsm)
-    {
-        
-    }
-
 }

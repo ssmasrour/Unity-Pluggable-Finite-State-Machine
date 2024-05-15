@@ -1,29 +1,32 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "AI/Action/Idle")]
-public class ActionIdle : IAction
+namespace Sahab.AI
 {
-    public override void Entry(StateController fsm)
+    [CreateAssetMenu(menuName = "AI/Action/Idle")]
+    public class ActionIdle : IAction
     {
-        fsm.InactiveAgent(true);
-    }
+        public override void Entry(StateController fsm)
+        {
+            fsm.InactiveAgent(true);
+        }
 
-    public override void OnUpdate(StateController fsm)
-    {
+        public override void OnUpdate(StateController fsm)
+        {
 
-    }
+        }
 
-    public override void OnLateUpdate(StateController fsm)
-    {
-        // write your code here
-    }
+        public override void OnLateUpdate(StateController fsm)
+        {
+            // write your code here
+        }
 
-    public override void OnFixedUpdate(StateController fsm)
-    {
-        // write your code here
-    }
-    public override void Exit(StateController fsm)
-    {
-        
+        public override void OnFixedUpdate(StateController fsm)
+        {
+            // write your code here
+        }
+        public override void Exit(StateController fsm)
+        {
+
+        }
     }
 }

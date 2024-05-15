@@ -1,9 +1,12 @@
 using UnityEngine;
 
-[System.Serializable]
-public class Transition
+namespace Sahab.AI
 {
-    public IDecision decision;
-    public State TrueState;
-    public State FalseState;
+    [System.Serializable]
+    public class Transition
+    {
+        public IDecision decision;
+        public State TrueState;
+        public State FalseState;
+    }
 }

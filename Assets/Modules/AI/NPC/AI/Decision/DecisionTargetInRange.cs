@@ -2,18 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "AI/Decision/TargetInRange")]
-public class DecisionTargetInRange : IDecision
+namespace Sahab.AI
 {
-    public float checkingRange;
-
-    public override bool Check(StateController fsm)
+    [CreateAssetMenu(menuName = "AI/Decision/TargetInRange")]
+    public class DecisionTargetInRange : IDecision
     {
-        if (Vector3.Distance(fsm.transform.position, fsm.Player.position) < checkingRange)
-        {
-            return true;
-        }
+        public float checkingRange;
 
-        return false;
+        public override bool Check(StateController fsm)
+        {
+            if (Vector3.Distance(fsm.transform.position, fsm.Player.position) < checkingRange)
+            {
+                return true;
+            }
+
+            return false;
+        }
     }
 }

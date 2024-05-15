@@ -2,14 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "AI/Decision/Health Point Threshold")]
-public class DecisionHPThreshold : IDecision
+namespace Sahab.AI
 {
-    [Tooltip("Make decision according to current health point")]
-    public int threshold;
-
-    public override bool Check(StateController fsm)
+    [CreateAssetMenu(menuName = "AI/Decision/Health Point Threshold")]
+    public class DecisionHPThreshold : IDecision
     {
-        return true/*fsm.HP.GetHP() <= Mathf.Abs(threshold)*/;
+        [Tooltip("Make decision according to current health point")]
+        public int threshold;
+
+        public override bool Check(StateController fsm)
+        {
+            return true/*fsm.HP.GetHP() <= Mathf.Abs(threshold)*/;
+        }
     }
 }

@@ -1,6 +1,9 @@
 using UnityEngine;
 
-public abstract class IDecision : ScriptableObject
+namespace Sahab.AI
 {
-    public abstract bool Check(StateController fsm);
+    public abstract class IDecision : ScriptableObject
+    {
+        public abstract bool Check(StateController fsm);
+    }
 }

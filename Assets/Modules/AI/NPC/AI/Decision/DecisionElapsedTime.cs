@@ -2,12 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "AI/Decision/Elapsed Time")]
-public class DecisionElapsedTime : IDecision
+namespace Sahab.AI
 {
-    public float time;
-    public override bool Check(StateController fsm)
+    [CreateAssetMenu(menuName = "AI/Decision/Elapsed Time")]
+    public class DecisionElapsedTime : IDecision
     {
-        return time < fsm.StateTimer(); 
+        public float time;
+        public override bool Check(StateController fsm)
+        {
+            return time < fsm.StateTimer();
+        }
     }
 }
